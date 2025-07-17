@@ -1,0 +1,62 @@
+name: 🏯 PAPICLAUDPUTER - Claude Code Integration
+
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review:
+    types: [submitted]
+  pull_request_review_comment:
+    types: [created]
+
+jobs:
+  papiclaudputer-assistant:
+    if: contains(github.event.comment.body, '@claude-code')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      actions: read
+    
+    steps:
+      - name: 🏯 Réveil de PAPICLAUDPUTER
+        run: |
+          echo "🤖 PAPICLAUDPUTER S'ÉVEILLE !"
+          echo "⚔️ Repository: ${{ github.repository }}"
+          echo "🎯 Événement: ${{ github.event_name }}"
+          echo "👤 Acteur: ${{ github.actor }}"
+      
+      - name: 📂 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: 🔧 Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: 📦 Install PAPICLAUDPUTER Dependencies
+        run: |
+          echo "🔽 Installation des armes légendaires..."
+          npm install @octokit/rest axios
+          echo "✅ Arsenal PAPICLAUDPUTER prêt !"
+      
+      - name: 🧠 Execute PAPICLAUDPUTER Mission
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
+          GITHUB_EVENT_PATH: ${{ github.event_path }}
+          GITHUB_ACTOR: ${{ github.actor }}
+        run: |
+          echo "🤖 Démarrage du processus Claude Code..."
+          echo "🏯 Contexte DOJUKU SHINGI chargé"
+          node .github/scripts/papiclaudputer-handler.js
+      
+      - name: 🏆 Mission Complete
+        run: |
+          echo "✅ PAPICLAUDPUTER: Mission terminée avec succès !"
+          echo "🌟 Prêt pour la prochaine aventure GitHub !"
+          echo "🏯 DOJUKU SHINGI - Victoire assurée !"
