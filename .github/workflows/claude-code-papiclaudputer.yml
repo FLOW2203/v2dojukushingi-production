@@ -176,4 +176,4 @@ jobs:
           echo "✅ Commit automatique effectué"
           echo "✅ Commentaire de succès posté"
           echo "✅ Configuration ESLint prête"
-          echo "🚀 Le projet est maintenant prêt POUR TOUJOURS!"
+          echo "🚀 Le projet est maintenant prêt POUR TOUJOURS!" 
